@@ -61,7 +61,7 @@ export const verifyUser = async (req: Request, res: Response) => {
     const usuario = await User.findOne({ email });
     if (!usuario) {
       res.status(404).json({
-        msg: "No se encontró el mail en la DB.",
+        msg: "No se encontró el mail en la Base de Datos.",
       });
       return;
     }
