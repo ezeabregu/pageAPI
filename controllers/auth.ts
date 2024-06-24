@@ -1,21 +1,17 @@
 import { Response, Request } from "express";
 import User, { IUser } from "../models/user";
 import bcryptjs from "bcryptjs";
-import { ROLES } from "../helpers/constants";
 import randomsting from "randomstring";
 import { sendEmail } from "../mailer/mailer";
 import { createJWT } from "../helpers/createJWT";
 
 export const register = async (req: Request, res: Response) => {
-  const { name, email, password, rol }: IUser = req.body;
-  const usuario = new User({ name, email, password, rol });
+  const { name, email, password }: IUser = req.body;
+  const usuario = new User({ name, email, password });
 
   const salt = bcryptjs.genSaltSync();
   usuario.password = bcryptjs.hashSync(password, salt);
   const adminKey = req.headers["admin-key"];
-  if (adminKey == process.env.KEYADMIN) {
-    usuario.rol = ROLES.admin;
-  }
   const newCode = randomsting.generate(6);
   usuario.code = newCode;
   await usuario.save();
