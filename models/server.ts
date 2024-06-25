@@ -23,9 +23,14 @@ export class Server {
     await dbConnection();
   }
   middlewares(): void {
-    const cors = require("cors");
     this.app.use(express.json());
     this.app.use(cors());
+    this.app.use((req, res, next) => {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+      res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+      next();
+    });
   }
   routes(): void {
     this.app.use(this.authPath, authRoutes);
