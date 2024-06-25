@@ -23,6 +23,7 @@ export class Server {
     await dbConnection();
   }
   middlewares(): void {
+    const cors = require("cors");
     this.app.use(express.json());
     this.app.use(cors());
   }
