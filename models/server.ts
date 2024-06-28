@@ -24,7 +24,11 @@ export class Server {
   }
   middlewares(): void {
     this.app.use(express.json());
-    this.app.use(cors());
+    this.app.use(
+      cors({
+        origin: "*",
+      })
+    );
     this.app.use((req, res, next) => {
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
