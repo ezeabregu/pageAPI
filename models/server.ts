@@ -24,13 +24,7 @@ export class Server {
   }
   middlewares(): void {
     this.app.use(express.json());
-    this.app.use(
-      cors({
-        origin: "*",
-        credentials: true,
-        methods: ["GET", "POST", "PUT", "DELETE"],
-      })
-    );
+    this.app.use(cors());
   }
   routes(): void {
     this.app.use(this.authPath, authRoutes);
