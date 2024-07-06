@@ -37,8 +37,8 @@ router.post(
 router.patch(
   "/verify",
   [
-    check("email", "El mail es obligatorio").not().isEmpty(),
-    check("email", "El mail no es válido").isEmail(),
+    check("email", "El correo electrónico es obligatorio").not().isEmpty(),
+    check("email", "El correo electrónico no es válido").isEmail(),
     check("code").not().isEmpty(),
     collectErrors,
   ],
