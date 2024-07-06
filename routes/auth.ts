@@ -13,7 +13,7 @@ router.post(
     check("email", "El correo electrónico es obligatorio.").isEmail(),
     check(
       "password",
-      "La contraseña debe ser de 6 caracteres mínimo."
+      "La contraseña debe ser de 6 caracteres al menos."
     ).isLength({ min: 6 }),
     check("email").custom(mailExist),
     collectErrors,
