@@ -3,13 +3,11 @@ import { register, login, verifyUser } from "../controllers/auth";
 import { check } from "express-validator";
 import { collectErrors } from "../middlewares/collectErrors";
 import { mailExist } from "../helpers/validationsDB";
-import cors from "cors";
 
 const router = Router();
 
 router.post(
   "/register",
-  cors(),
   [
     check("name", "El nombre es obligatorio.").not().isEmpty(),
     check("email", "El correo electrónico es obligatorio.").isEmail(),
@@ -25,7 +23,6 @@ router.post(
 
 router.post(
   "/login",
-  cors(),
   [
     check("email", "El correo electrónico es obligatorio.").not().isEmpty(),
     check("email", "El correo electrónico no es válido.").isEmail(),
@@ -39,7 +36,6 @@ router.post(
 
 router.patch(
   "/verify",
-  cors(),
   [
     check("email", "El mail es obligatorio").not().isEmpty(),
     check("email", "El mail no es válido").isEmail(),
