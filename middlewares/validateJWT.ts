@@ -17,7 +17,7 @@ const validateJWT = async (req: Request, res: Response, next: NextFunction) => {
     const userConfirm: IUser | null = await User.findById(id);
     if (!userConfirm) {
       res.status(404).json({
-        msg: "El usuario no se ha encontrado en la DB.",
+        msg: "El usuario no se ha encontrado en la base de datos.",
       });
       return;
     }

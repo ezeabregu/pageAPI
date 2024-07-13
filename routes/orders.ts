@@ -3,6 +3,7 @@ import { getOrders, createOrder } from "../controllers/orders";
 import validateJWT from "../middlewares/validateJWT";
 import { collectErrors } from "../middlewares/collectErrors";
 import { check } from "express-validator";
+import { isVerified } from "../middlewares/validateVerify";
 
 const router = Router();
 
@@ -12,6 +13,7 @@ router.post(
   "/",
   [
     validateJWT,
+    isVerified,
     check("price", "El precio es obligatorio").not().isEmpty(),
     check("shippingCost", "El consto de envío es obligatorio").not().isEmpty(),
     check("total", "El precio total es obligatorio").not().isEmpty(),
