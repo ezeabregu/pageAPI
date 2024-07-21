@@ -4,7 +4,6 @@ import User, { IUser } from "../models/user";
 
 const validateJWT = async (req: Request, res: Response, next: NextFunction) => {
   const token = req.headers["x-token"] as string;
-  console.log(token);
 
   if (!token) {
     res.status(401).json({
