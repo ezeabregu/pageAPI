@@ -12,7 +12,6 @@ router.get("/", [validateJWT, collectErrors], getOrders);
 router.post(
   "/",
   [
-    validateJWT,
     isVerified,
     check("price", "El precio es obligatorio").not().isEmpty(),
     check("shippingCost", "El costo de envío es obligatorio").not().isEmpty(),
