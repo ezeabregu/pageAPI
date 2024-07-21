@@ -10,7 +10,7 @@ const router = Router();
 router.get("/", [validateJWT, collectErrors], getOrders);
 
 router.post(
-  "/orders",
+  "/",
   [
     validateJWT,
     isVerified,
