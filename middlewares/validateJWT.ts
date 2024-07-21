@@ -7,7 +7,7 @@ const validateJWT = async (req: Request, res: Response, next: NextFunction) => {
 
   if (!token) {
     res.status(401).json({
-      msg: "No hay token en la peticion para crear Ordenes.",
+      msg: "No hay token en la peticion.",
     });
     return;
   }
