@@ -77,6 +77,7 @@ export const verifyUser = async (req: Request, res: Response) => {
     res.status(200).json({
       msg: "Usuario verificado con éxito.",
     });
+    await usuario.save();
   } catch (error) {
     console.log(error);
     res.status(500).json({

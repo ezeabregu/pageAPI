@@ -3,6 +3,8 @@ import { register, login, verifyUser } from "../controllers/auth";
 import { check } from "express-validator";
 import { collectErrors } from "../middlewares/collectErrors";
 import { mailExist } from "../helpers/validationsDB";
+import validateJWT from "../middlewares/validateJWT";
+
 
 const router = Router();
 
@@ -37,6 +39,7 @@ router.post(
 router.patch(
   "/verify",
   [
+    validateJWT,
     check("email", "El correo electrónico es obligatorio").not().isEmpty(),
     check("email", "El correo electrónico no es válido").isEmail(),
     check("code").not().isEmpty(),
