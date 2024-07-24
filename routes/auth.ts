@@ -38,6 +38,7 @@ router.post(
 router.patch(
   "/verify",
   [
+    validateJWT,
     check("email", "El correo electrónico es obligatorio").not().isEmpty(),
     check("email", "El correo electrónico no es válido").isEmail(),
     check("code").not().isEmpty(),
