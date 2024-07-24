@@ -58,24 +58,28 @@ export const verifyUser = async (req: Request, res: Response) => {
     if (!usuario) {
       res.status(404).json({
         msg: "No se encontró el mail en la Base de Datos.",
+        usuario,
       });
       return;
     }
     if (usuario.verified) {
       res.status(400).json({
         msg: "El usuario ya está correctamente verificado.",
+        usuario,
       });
       return;
     }
     if (code !== usuario.code) {
       res.status(401).json({
         msg: "El código ingresado no es correcto.",
+        usuario,
       });
       return;
     }
     await User.findOneAndUpdate({ email }, { verified: true });
     res.status(200).json({
       msg: "Usuario verificado con éxito.",
+      usuario,
     });
     await usuario.save();
   } catch (error) {
