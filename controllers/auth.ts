@@ -62,10 +62,12 @@ export const verifyUser = async (req: Request, res: Response) => {
       });
       return;
     }
+    const token = await createJWT(usuario.id);
     if (usuario.verified) {
       res.status(400).json({
         msg: "El usuario ya está correctamente verificado.",
         usuario,
+        token,
       });
       return;
     }
