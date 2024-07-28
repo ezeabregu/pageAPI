@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { collectErrors } from "../middlewares/collectErrors";
-import { getProducts } from "../controllers/products";
+import { createLibro, getLibros } from "../controllers/libros";
 
 const router = Router();
 
-router.get("/", [collectErrors], getProducts);
+router.get("/", getLibros);
+
+router.post("/", createLibro);
 
 export default router;

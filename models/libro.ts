@@ -1,13 +1,13 @@
 import { Schema, model, Model } from "mongoose";
 
-export interface Product {
+export interface ILibro {
   id: number;
   title: string;
   img: string;
   price: number;
 }
 
-const ProductSchema = new Schema<Product>({
+const LibroSchema = new Schema<ILibro>({
   id: {
     type: Number,
     required: [true, "El número identificar es obligatorio."],
@@ -26,10 +26,10 @@ const ProductSchema = new Schema<Product>({
   },
 });
 
-ProductSchema.methods.toJSON = function () {
-  const { _id, ...product } = this.toObject();
-  return product;
+LibroSchema.methods.toJSON = function () {
+  const { __v, _id, ...libro } = this.toObject();
+  return libro;
 };
 
-const Product: Model<Product> = model<Product>("Product", ProductSchema);
-export default Product;
+const Libro: Model<ILibro> = model<ILibro>("Libro", LibroSchema);
+export default Libro;
