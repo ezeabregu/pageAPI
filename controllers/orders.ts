@@ -23,6 +23,7 @@ export const createOrder = async (req: Request, res: Response) => {
   const order = new Order(data);
   await order.save();
   res.status(201).json({
+    msg: "Orden creada con éxito!",
     order,
   });
 };
